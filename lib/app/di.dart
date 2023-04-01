@@ -10,8 +10,12 @@ import '../data/network/network_info/network_info.dart';
 import '../data/network/remote/app_api.dart';
 import '../data/repositories/repository_impl.dart';
 import '../domain/repositories/repository.dart';
+import '../domain/use_cases/forgot_password_usecase.dart';
 import '../domain/use_cases/login_usecase.dart';
+import '../domain/use_cases/register_usecase.dart';
+import '../presentation/forgot_password/forgot_password_viewmodel.dart';
 import '../presentation/login/login_view_model/login_view_model.dart';
+import '../presentation/register/view_model/register_viewmodel.dart';
 
 final instance = GetIt.instance;
 
@@ -52,5 +56,23 @@ Future<void> initLoginModule() async {
   if (!GetIt.I.isRegistered<LoginUseCase>()) {
     instance.registerFactory<LoginUseCase>(() => LoginUseCase(instance()));
     instance.registerFactory<LoginViewModel>(() => LoginViewModel(instance()));
+  }
+}
+
+initForgotPasswordModule() {
+  if (!GetIt.I.isRegistered<ForgotPasswordUseCase>()) {
+    instance.registerFactory<ForgotPasswordUseCase>(
+        () => ForgotPasswordUseCase(instance()));
+    instance.registerFactory<ForgotPasswordViewModel>(
+        () => ForgotPasswordViewModel(instance()));
+  }
+}
+
+initRegisterModule() {
+  if (!GetIt.I.isRegistered<RegisterUseCase>()) {
+    instance
+        .registerFactory<RegisterUseCase>(() => RegisterUseCase(instance()));
+    instance.registerFactory<RegisterViewModel>(
+        () => RegisterViewModel(instance()));
   }
 }

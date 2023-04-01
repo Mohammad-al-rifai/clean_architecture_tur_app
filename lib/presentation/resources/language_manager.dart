@@ -1,4 +1,7 @@
-enum LanguageType { kENGLISH, kARABIC }
+enum LanguageType {
+  kENGLISH,
+  kARABIC,
+}
 
 const String kARABIC = "ar";
 const String kENGLISH = "en";

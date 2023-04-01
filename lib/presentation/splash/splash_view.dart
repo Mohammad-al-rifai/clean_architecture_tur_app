@@ -21,7 +21,10 @@ class _SplashViewState extends State<SplashView> {
   final AppPreferences _appPreferences = instance<AppPreferences>();
 
   _startDelay() {
-    _timer = Timer(const Duration(seconds: AppConstants.splashDelay), _goNext);
+    _timer = Timer(
+      const Duration(seconds: AppConstants.splashDelay),
+      _goNext,
+    );
   }
 
   _goNext() {
@@ -46,7 +49,7 @@ class _SplashViewState extends State<SplashView> {
                           }
                         else
                           {
-                            // navigate to onboarding screen
+                            // navigate to onBoarding screen
 
                             Navigator.pushReplacementNamed(
                               context,

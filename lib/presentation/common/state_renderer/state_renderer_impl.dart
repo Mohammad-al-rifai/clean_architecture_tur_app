@@ -9,8 +9,8 @@ abstract class FlowState {
 
   String getMessage();
 }
-// loading state (POPUP,FULL SCREEN)
 
+// loading state (POPUP,FULL SCREEN)
 class LoadingState extends FlowState {
   StateRendererType stateRendererType;
   String message;
@@ -41,8 +41,20 @@ class ErrorState extends FlowState {
   StateRendererType getStateRendererType() => stateRendererType;
 }
 
-// content state
+// success state
+class SuccessState extends FlowState {
+  String message;
 
+  SuccessState(this.message);
+
+  @override
+  String getMessage() => message;
+
+  @override
+  StateRendererType getStateRendererType() => StateRendererType.popupSuccess;
+}
+
+// content state
 class ContentState extends FlowState {
   ContentState();
 
@@ -54,7 +66,6 @@ class ContentState extends FlowState {
 }
 
 // EMPTY STATE
-
 class EmptyState extends FlowState {
   String message;
 
@@ -124,9 +135,21 @@ extension FlowStateExtension on FlowState {
             retryActionFunction: () {},
           );
         }
+
       case ContentState:
         {
           dismissDialog(context);
+          return contentScreenWidget;
+        }
+      case SuccessState:
+        {
+          // i should check if we are showing loading popup to remove it before showing success popup
+          dismissDialog(context);
+
+          // show popup
+          showPopup(context, StateRendererType.popupSuccess, getMessage(),
+              title: AppStrings.success);
+          // return content ui of the screen
           return contentScreenWidget;
         }
       default:
@@ -140,14 +163,16 @@ extension FlowStateExtension on FlowState {
   showPopup(
     BuildContext context,
     StateRendererType stateRendererType,
-    String message,
-  ) {
+    String message, {
+    String title = Constants.empty,
+  }) {
     WidgetsBinding.instance.addPostFrameCallback(
       (_) => showDialog(
         context: context,
         builder: (BuildContext context) => StateRenderer(
           stateRendererType: stateRendererType,
           message: message,
+          title: title,
           retryActionFunction: () {},
         ),
       ),
@@ -163,6 +188,3 @@ extension FlowStateExtension on FlowState {
     }
   }
 }
-
-// Lecture : 100 to be impl
-// Make Error : 100

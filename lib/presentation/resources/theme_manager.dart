@@ -19,6 +19,7 @@ ThemeData getApplicationTheme() {
       shadowColor: ColorManager.grey,
       elevation: AppSize.s4,
     ),
+
     // app bar theme
     appBarTheme: AppBarTheme(
       centerTitle: true,
@@ -54,34 +55,36 @@ ThemeData getApplicationTheme() {
         ),
       ),
     ),
+
     // text theme
     textTheme: TextTheme(
+
       displayLarge: getSemiBoldStyle(
         color: ColorManager.darkGrey,
         fontSize: FontSize.s16,
       ),
+
       headlineLarge: getSemiBoldStyle(
         color: ColorManager.darkGrey,
         fontSize: FontSize.s16,
       ),
+
       headlineMedium: getRegularStyle(
         color: ColorManager.darkGrey,
         fontSize: FontSize.s14,
       ),
+
       titleMedium: getMediumStyle(
-        color: ColorManager.primary,
-        // fontSize: FontSize.s14,
+        color: ColorManager.primary /* fontSize: FontSize.s14*/,
       ),
-      bodyLarge: getRegularStyle(
-        color: ColorManager.grey1,
-      ),
-      bodySmall: getRegularStyle(
-        color: ColorManager.grey,
-      ),
+
+      bodyLarge: getRegularStyle(color: ColorManager.grey1),
+
+      bodySmall: getRegularStyle(color: ColorManager.grey),
+
     ),
 
     // input decoration theme (text form field)
-
     inputDecorationTheme: InputDecorationTheme(
       // content padding
       contentPadding: const EdgeInsets.all(

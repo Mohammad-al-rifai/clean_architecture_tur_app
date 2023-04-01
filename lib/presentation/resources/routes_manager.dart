@@ -2,7 +2,7 @@ import 'package:advanced_course/presentation/forgot_password/forgot_password_vie
 import 'package:advanced_course/presentation/login/login_view/login_view.dart';
 import 'package:advanced_course/presentation/main/main_view.dart';
 import 'package:advanced_course/presentation/onboarding/view/onboarding_view.dart';
-import 'package:advanced_course/presentation/register/register_view.dart';
+import 'package:advanced_course/presentation/register/view/register_view.dart';
 import 'package:advanced_course/presentation/resources/string_manager.dart';
 import 'package:advanced_course/presentation/splash/splash_view.dart';
 import 'package:advanced_course/presentation/store_details/store_detailes_view.dart';
@@ -31,8 +31,10 @@ class RouteGenerator {
       case Routes.onBoardingRoute:
         return MaterialPageRoute(builder: (_) => const OnBoardingView());
       case Routes.registerRoute:
+        initRegisterModule();
         return MaterialPageRoute(builder: (_) => const RegisterView());
       case Routes.forgotPasswordRoute:
+        initForgotPasswordModule();
         return MaterialPageRoute(builder: (_) => const ForgotPasswordView());
       case Routes.mainRoute:
         return MaterialPageRoute(builder: (_) => const MainView());

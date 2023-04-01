@@ -14,6 +14,7 @@ enum StateRendererType {
   // POPUP STATES (DIALOG)
   popupLoadingState,
   popupErrorState,
+  popupSuccess,
 
   // FULL SCREEN STATED (FULL SCREEN)
   fullScreenLoadingState,
@@ -46,7 +47,9 @@ class StateRenderer extends StatelessWidget {
     switch (stateRendererType) {
       case StateRendererType.popupLoadingState:
         return _getPopUpDialog(
-            context, [_getAnimatedImage(JsonAssets.loading)]);
+          context,
+          [_getAnimatedImage(JsonAssets.loading)],
+        );
       case StateRendererType.popupErrorState:
         return _getPopUpDialog(context, [
           _getAnimatedImage(JsonAssets.error),
@@ -73,6 +76,13 @@ class StateRenderer extends StatelessWidget {
             [_getAnimatedImage(JsonAssets.empty), _getMessage(message)]);
       case StateRendererType.contentState:
         return Container();
+      case StateRendererType.popupSuccess:
+        return _getPopUpDialog(context, [
+          _getAnimatedImage(JsonAssets.success),
+          _getMessage(title),
+          _getMessage(message),
+          _getRetryButton(AppStrings.ok, context)
+        ]);
       default:
         return Container();
     }
@@ -134,6 +144,7 @@ class StateRenderer extends StatelessWidget {
             color: ColorManager.black,
             fontSize: FontSize.s18,
           ),
+          textAlign: TextAlign.center,
         ),
       ),
     );

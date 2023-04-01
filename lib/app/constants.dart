@@ -2,6 +2,7 @@ class Constants {
   static const String baseUrl = "http://muhammadalrifai.mocklab.io";
 
   static const String logIn = "/customers/login";
+  static const String forgotPassword = "/customers/forgotPassword";
 
   static const String empty = "";
 
