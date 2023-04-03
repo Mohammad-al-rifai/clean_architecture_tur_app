@@ -3,6 +3,7 @@ import 'package:advanced_course/presentation/resources/fonts_manager.dart';
 import 'package:advanced_course/presentation/resources/styles_manager.dart';
 import 'package:advanced_course/presentation/resources/values_manager.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 ThemeData getApplicationTheme() {
   return ThemeData(
@@ -29,6 +30,9 @@ ThemeData getApplicationTheme() {
       titleTextStyle: getRegularStyle(
         fontSize: FontSize.s16,
         color: ColorManager.white,
+      ),
+      systemOverlayStyle: const SystemUiOverlayStyle(
+        statusBarIconBrightness: Brightness.light,
       ),
     ),
 
@@ -58,30 +62,23 @@ ThemeData getApplicationTheme() {
 
     // text theme
     textTheme: TextTheme(
-
       displayLarge: getSemiBoldStyle(
         color: ColorManager.darkGrey,
         fontSize: FontSize.s16,
       ),
-
       headlineLarge: getSemiBoldStyle(
         color: ColorManager.darkGrey,
         fontSize: FontSize.s16,
       ),
-
       headlineMedium: getRegularStyle(
         color: ColorManager.darkGrey,
         fontSize: FontSize.s14,
       ),
-
       titleMedium: getMediumStyle(
         color: ColorManager.primary /* fontSize: FontSize.s14*/,
       ),
-
       bodyLarge: getRegularStyle(color: ColorManager.grey1),
-
       bodySmall: getRegularStyle(color: ColorManager.grey),
-
     ),
 
     // input decoration theme (text form field)

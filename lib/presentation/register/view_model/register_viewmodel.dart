@@ -23,6 +23,8 @@ class RegisterViewModel extends BaseViewModel
       StreamController<File>.broadcast();
   StreamController areAllInputsValidStreamController =
       StreamController<void>.broadcast();
+  StreamController isUserRegisteredInSuccessfullyStreamController =
+  StreamController<bool>();
 
   // Constructor
   final RegisterUseCase _registerUseCase;
@@ -89,13 +91,14 @@ class RegisterViewModel extends BaseViewModel
         // content
         inputState.add(ContentState());
         // navigate to main screen
-        // isUserLoggedInSuccessfullyStreamController.add(true);
+        isUserRegisteredInSuccessfullyStreamController.add(true);
       },
     );
   }
 
   @override
   setUserName(String userName) {
+    inputUserName.add(userName);
     if (_isUserNameValid(userName)) {
       //  update register view object
       registerObject = registerObject.copyWith(userName: userName);
@@ -120,6 +123,7 @@ class RegisterViewModel extends BaseViewModel
 
   @override
   setEmail(String email) {
+    inputEmail.add(email);
     if (isEmailValid(email)) {
       //  update register view object
       registerObject = registerObject.copyWith(email: email);
@@ -132,6 +136,8 @@ class RegisterViewModel extends BaseViewModel
 
   @override
   setMobileNumber(String mobileNumber) {
+    inputMobileNumber.add(mobileNumber);
+
     if (_isMobileNumberValid(mobileNumber)) {
       //  update register view object
       registerObject = registerObject.copyWith(mobileNumber: mobileNumber);
@@ -144,6 +150,7 @@ class RegisterViewModel extends BaseViewModel
 
   @override
   setPassword(String password) {
+    inputPassword.add(password);
     if (_isPasswordValid(password)) {
       //  update register view object
       registerObject = registerObject.copyWith(password: password);
@@ -156,6 +163,7 @@ class RegisterViewModel extends BaseViewModel
 
   @override
   setProfilePicture(File profilePicture) {
+    inputProfilePicture.add(profilePicture);
     if (profilePicture.path.isNotEmpty) {
       //  update register view object
       registerObject =
@@ -219,7 +227,7 @@ class RegisterViewModel extends BaseViewModel
 
   // 5- Profile picture Stream.
   @override
-  Stream<File> get outputIsProfilePictureValid =>
+  Stream<File> get outputProfilePicture =>
       profilePictureStreamController.stream.map(
         (file) => file,
       );
@@ -263,6 +271,8 @@ class RegisterViewModel extends BaseViewModel
     passwordStreamController.close();
     profilePictureStreamController.close();
     areAllInputsValidStreamController.close();
+    isUserRegisteredInSuccessfullyStreamController.close();
+
     super.dispose();
   }
 }
@@ -312,7 +322,8 @@ abstract class RegisterViewModelOutput {
 
   Stream<String?> get outputErrorPassword;
 
-  Stream<File> get outputIsProfilePictureValid;
+  Stream<File> get outputProfilePicture;
 
   Stream<bool> get outputAreAllInputsValid;
 }
+
