@@ -27,12 +27,10 @@ class AppPreferences {
     _sharedPreferences.setBool(PREFS_KEY_ONBOARDING_SCREEN_VIEWED, true);
   }
 
-
   Future<bool> isOnBoardingScreenViewed() async {
     return _sharedPreferences.getBool(PREFS_KEY_ONBOARDING_SCREEN_VIEWED) ??
         false;
   }
-
 
   //login
   Future<void> setUserLoggedIn() async {
