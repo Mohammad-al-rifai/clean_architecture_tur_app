@@ -1,3 +1,4 @@
+import 'package:advanced_course/presentation/resources/string_manager.dart';
 import 'package:flutter/material.dart';
 
 class SettingsPage extends StatefulWidget {
@@ -10,6 +11,8 @@ class SettingsPage extends StatefulWidget {
 class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Center(
+      child: Text(AppStrings.settings),
+    );
   }
 }
