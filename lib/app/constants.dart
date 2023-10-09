@@ -3,6 +3,7 @@ class Constants {
 
   static const String logIn = "/customers/login";
   static const String forgotPassword = "/customers/forgotPassword";
+  static const String getHome = "/home";
 
   static const String empty = "";
 
