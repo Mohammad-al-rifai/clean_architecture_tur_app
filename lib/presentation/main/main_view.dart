@@ -1,7 +1,7 @@
-import 'package:advanced_course/presentation/main/pages/home_page.dart';
-import 'package:advanced_course/presentation/main/pages/notifications_page.dart';
-import 'package:advanced_course/presentation/main/pages/search_page.dart';
-import 'package:advanced_course/presentation/main/pages/settings_page.dart';
+import 'package:advanced_course/presentation/main/pages/home/view/home_page.dart';
+import 'package:advanced_course/presentation/main/pages/notifications/notifications_page.dart';
+import 'package:advanced_course/presentation/main/pages/search/search_page.dart';
+import 'package:advanced_course/presentation/main/pages/settings/settings_page.dart';
 import 'package:advanced_course/presentation/resources/color_manager.dart';
 import 'package:advanced_course/presentation/resources/string_manager.dart';
 import 'package:advanced_course/presentation/resources/values_manager.dart';
