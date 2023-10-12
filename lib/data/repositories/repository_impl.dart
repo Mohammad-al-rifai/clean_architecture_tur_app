@@ -1,3 +1,5 @@
+import 'package:advanced_course/data/data_sources/local_data_source.dart';
+
 import '../../domain/models/models.dart';
 import '../../domain/repositories/repository.dart';
 import '../data_sources/remote_data_source.dart';
@@ -11,11 +13,13 @@ import '../network/requests/requests.dart';
 
 class RepositoryImpl implements Repository {
   final RemoteDataSource _remoteDataSource;
+  final LocalDataSource _localDataSource;
   final NetworkInfo _networkInfo;
 
   RepositoryImpl(
     this._remoteDataSource,
     this._networkInfo,
+    this._localDataSource,
   );
 
   @override
@@ -118,31 +122,44 @@ class RepositoryImpl implements Repository {
 
   @override
   Future<Either<Failure, HomeObject>> getHomeData() async {
-    if (await _networkInfo.isConnected) {
-      try {
-        // its safe to call API
-        final response = await _remoteDataSource.getHomeData();
-        if (response.status == ApiInternalStatus.SUCCESS) {
-          // Success
-          // return Right
-          return Right(response.toDomain());
-        } else {
-          // Failure
-          // return Left
-          return Left(
-            Failure(
-              response.status ?? ResponseCode.DEFAULT,
-              response.message ?? ResponseMessage.DEFAULT,
-            ),
-          );
+    try {
+      // get response from cache.
+      final response = await _localDataSource.getHomeData();
+      return Right(response.toDomain());
+    } catch (cacheError) {
+      // cache is not existing or cache is not valid.
+
+      // its time to get from API Side.
+      if (await _networkInfo.isConnected) {
+        try {
+          // its safe to call API
+          final response = await _remoteDataSource.getHomeData();
+          if (response.status == ApiInternalStatus.SUCCESS) {
+            // Success
+            // return either Right
+            // return Data
+
+            // Save home response to cache [Local Data Source].
+            _localDataSource.saveHomeToCache(response);
+            return Right(response.toDomain());
+          } else {
+            // Failure
+            // return Left
+            return Left(
+              Failure(
+                response.status ?? ResponseCode.DEFAULT,
+                response.message ?? ResponseMessage.DEFAULT,
+              ),
+            );
+          }
+        } catch (error) {
+          return Left(ErrorHandler.handle(error).failure);
         }
-      } catch (error) {
-        return Left(ErrorHandler.handle(error).failure);
+      } else {
+        // return network connection error
+        // return Left
+        return Left(DataSource.NO_INTERNET_CONNECTION.getFailure());
       }
-    } else {
-      // return network connection error
-      // return Left
-      return Left(DataSource.NO_INTERNET_CONNECTION.getFailure());
     }
   }
 }

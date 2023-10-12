@@ -1,4 +1,5 @@
 import 'package:advanced_course/app/app_prefs.dart';
+import 'package:advanced_course/data/data_sources/local_data_source.dart';
 import 'package:advanced_course/domain/use_cases/home_usecase.dart';
 import 'package:advanced_course/presentation/main/pages/home/viewmodel/home_viewmodel.dart';
 import 'package:dio/dio.dart';
@@ -49,10 +50,13 @@ Future<void> initAppModule() async {
   instance.registerLazySingleton<RemoteDataSource>(
       () => RemoteDataSourceImpl(instance<AppServiceClient>()));
 
+// Local data source
+  instance.registerLazySingleton<LocalDataSource>(() => LocalDataSourceImpl());
+
   // repository
 
   instance.registerLazySingleton<Repository>(
-      () => RepositoryImpl(instance(), instance()));
+      () => RepositoryImpl(instance(), instance(), instance()));
 }
 
 Future<void> initLoginModule() async {
