@@ -1,5 +1,6 @@
 import 'package:advanced_course/presentation/resources/color_manager.dart';
 import 'package:advanced_course/presentation/resources/routes_manager.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -82,8 +83,8 @@ class _OnBoardingViewState extends State<OnBoardingView> {
                   onPressed: () {
                     Navigator.pushReplacementNamed(context, Routes.loginRoute);
                   },
-                  child: const Text(
-                    AppStrings.skip,
+                  child: Text(
+                    AppStrings.skip.tr(),
                     textAlign: TextAlign.end,
                   ),
                 ),

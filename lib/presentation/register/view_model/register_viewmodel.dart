@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:advanced_course/presentation/base/base_view_model.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 import '../../../app/functions.dart';
 import '../../../domain/use_cases/register_usecase.dart';
@@ -185,7 +186,7 @@ class RegisterViewModel extends BaseViewModel
 
   @override
   Stream<String?> get outputErrorUserName => outputIsUserNameValid.map(
-        (isUserName) => isUserName ? null : AppStrings.userNameInvalid,
+        (isUserName) => isUserName ? null : AppStrings.userNameInvalid.tr(),
       );
 
   // 2- Email Stream.
@@ -196,7 +197,7 @@ class RegisterViewModel extends BaseViewModel
 
   @override
   Stream<String?> get outputErrorEmail => outputIsEmailValid.map(
-        (isEmailValid) => isEmailValid ? null : AppStrings.invalidEmail,
+        (isEmailValid) => isEmailValid ? null : AppStrings.invalidEmail.tr(),
       );
 
   // 3- Password Stream.
@@ -209,7 +210,7 @@ class RegisterViewModel extends BaseViewModel
   @override
   Stream<String?> get outputErrorPassword => outputIsPasswordValid.map(
         (isPasswordValid) =>
-            isPasswordValid ? null : AppStrings.passwordInvalid,
+            isPasswordValid ? null : AppStrings.passwordInvalid.tr(),
       );
 
   // 4- Mobile Number Stream.
@@ -222,7 +223,7 @@ class RegisterViewModel extends BaseViewModel
   @override
   Stream<String?> get outputErrorMobileNumber => outputIsMobileNumberValid.map(
         (isMobileNumberValid) =>
-            isMobileNumberValid ? null : AppStrings.mobileNumberInvalid,
+            isMobileNumberValid ? null : AppStrings.mobileNumberInvalid.tr(),
       );
 
   // 5- Profile picture Stream.

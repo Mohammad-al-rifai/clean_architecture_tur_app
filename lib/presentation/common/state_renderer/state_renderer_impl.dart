@@ -1,4 +1,5 @@
 import 'package:advanced_course/presentation/common/state_renderer/state_renderer.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../../app/constants.dart';
@@ -35,7 +36,7 @@ class ErrorState extends FlowState {
   ErrorState(this.stateRendererType, this.message);
 
   @override
-  String getMessage() => message;
+  String getMessage() => message.tr();
 
   @override
   StateRendererType getStateRendererType() => stateRendererType;

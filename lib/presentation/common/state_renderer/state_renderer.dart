@@ -1,6 +1,7 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:advanced_course/presentation/resources/assets_manager.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
@@ -58,29 +59,29 @@ class StateRenderer extends StatelessWidget {
           [
             _getAnimatedImage(JsonAssets.error),
             _getMessage(message),
-            _getRetryButton(AppStrings.ok, context)
+            _getRetryButton(AppStrings.ok.tr(), context)
           ],
         );
       case StateRendererType.fullScreenLoadingState:
         return _getItemsColumn(
           [
             _getAnimatedImage(JsonAssets.loading),
-            _getMessage(message),
+            _getMessage(message.tr()),
           ],
         );
       case StateRendererType.fullScreenErrorState:
         return _getItemsColumn(
           [
             _getAnimatedImage(JsonAssets.error),
-            _getMessage(message),
-            _getRetryButton(AppStrings.retryAgain, context),
+            _getMessage(message.tr()),
+            _getRetryButton(AppStrings.retryAgain.tr(), context),
           ],
         );
       case StateRendererType.fullScreenEmptyState:
         return _getItemsColumn(
           [
             _getAnimatedImage(JsonAssets.empty),
-            _getMessage(message),
+            _getMessage(message.tr()),
           ],
         );
       case StateRendererType.contentState:
@@ -91,8 +92,8 @@ class StateRenderer extends StatelessWidget {
           [
             _getAnimatedImage(JsonAssets.success),
             _getMessage(title),
-            _getMessage(message),
-            _getRetryButton(AppStrings.ok, context)
+            _getMessage(message.tr()),
+            _getRetryButton(AppStrings.ok.tr(), context)
           ],
         );
       default:
