@@ -101,3 +101,18 @@ extension HomeResponseMapper on HomeResponse? {
     return HomeObject(data);
   }
 }
+
+// Store Details Response Mapper
+
+extension StoreDetailsResponseMapper on StoreDetailsResponse? {
+  StoreDetails toDomain() {
+    return StoreDetails(
+      this?.id.orZero() ?? Constants.zero,
+      this?.title.orEmpty() ?? Constants.empty,
+      this?.image ?? Constants.empty,
+      this?.details ?? Constants.empty,
+      this?.services ?? Constants.empty,
+      this?.about ?? Constants.empty,
+    );
+  }
+}
